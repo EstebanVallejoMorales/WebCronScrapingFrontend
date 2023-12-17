@@ -7,16 +7,44 @@
     <h2>Schedule web cron scraping</h2>
     
     <form>
-      <label for="url">Url:</label>
-      <input type="text" id="url" [(ngModel)]="url" name="url" />
+      <label for="url1">Url:</label>
+      <input type="text" id="url" [(ngModel)]="url1" name="url" />
   
-      <label for="cron">Cron:</label>
-      <input type="text" id="cron" [(ngModel)]="cron" name="cron" />
+      <label for="cron1">Cron:</label>
+      <input type="text" id="cron" [(ngModel)]="cron1" name="cron" />
   
       <button type="button" (click)="schedule()">Schedule</button>
     </form>
+    
+    <div>
+      <h2>Response:</h2>
+      <div *ngIf="webScrapingResultDto1">
+        {{webScrapingResultDto1.message}}
+      </div> 
+    </div>
   </div>
 
-  
+  <div class="schedule-section">
+    <h2>Execute web scraper</h2>
+    
+    <form>
+      <label for="url2">Url:</label>
+      <input type="text" id="url" [(ngModel)]="url2" name="url2" />  
+      <button type="button" (click)="execute()">Execute</button>
+    </form>
+    
+    <div>
+      <h2>Response:</h2>
+      <h3>Message:</h3>
+      <div *ngIf="webScrapingResultDto2">
+        {{webScrapingResultDto2.message}}
+      </div> 
+      <h3>Headers:</h3>
+      <div *ngFor="let element of webScrapingResultDto2.headers">
+        {{ element }}
+        <br>
+      </div>
+    </div>
+  </div>
 
 <router-outlet></router-outlet>
