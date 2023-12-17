@@ -58,9 +58,6 @@
     <div>
       <h2>Response:</h2>
       <br>
-      <div *ngIf="webScrapingJobResultDto">
-        No se han ejecutado jobs
-      </div>    
       <div *ngFor="let element of webScrapingJobResultDto">
         
         <h3>JobId </h3> {{element.jobId}}
