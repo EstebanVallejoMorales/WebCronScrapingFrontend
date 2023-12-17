@@ -1,0 +1,249 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "RockwellAutomation.Challenge.WebCronScrapping",
+      "version": "1.0"
+    },
+    "servers": [
+        {
+            "url" : "https://localhost:32768"
+        }
+    ],
+    "paths": {
+      "/WeatherForecast": {
+        "get": {
+          "tags": [
+            "WeatherForecast"
+          ],
+          "operationId": "GetWeatherForecast",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WeatherForecast"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WeatherForecast"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WeatherForecast"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/WebCronScraping/GetWebCronScrapping": {
+        "get": {
+          "tags": [
+            "WebCronScraping"
+          ],
+          "parameters": [
+            {
+              "name": "url",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/WebScrapingResultDto"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/WebScrapingResultDto"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/WebScrapingResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/WebCronScraping/GetAllWebScraìngJobResult": {
+        "get": {
+          "tags": [
+            "WebCronScraping"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WebScrapingJobResultDto"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WebScrapingJobResultDto"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WebScrapingJobResultDto"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/WebCronScraping/ScheduleWebCronScrapping": {
+        "post": {
+          "tags": [
+            "WebCronScraping"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebScrapingScheduleRequestDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebScrapingScheduleRequestDto"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebScrapingScheduleRequestDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/WebScrapingResultDto"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/WebScrapingResultDto"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/WebScrapingResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "WeatherForecast": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "temperatureC": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "temperatureF": {
+              "type": "integer",
+              "format": "int32",
+              "readOnly": true
+            },
+            "summary": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "WebScrapingJobResultDto": {
+          "type": "object",
+          "properties": {
+            "jobId": {
+              "type": "string",
+              "nullable": true
+            },
+            "headers": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "WebScrapingResultDto": {
+          "type": "object",
+          "properties": {
+            "headers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "WebScrapingScheduleRequestDto": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "nullable": true
+            },
+            "cron": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }

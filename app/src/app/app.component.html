@@ -1,0 +1,22 @@
+<!-- <h1>Hola Angular</h1>
+<div *ngIf="webScrapingResultDto">
+    {{webScrapingResultDto.message}}
+</div> -->
+
+<div class="schedule-section">
+    <h2>Schedule web cron scraping</h2>
+    
+    <form>
+      <label for="url">Url:</label>
+      <input type="text" id="url" [(ngModel)]="url" name="url" />
+  
+      <label for="cron">Cron:</label>
+      <input type="text" id="cron" [(ngModel)]="cron" name="cron" />
+  
+      <button type="button" (click)="schedule()">Schedule</button>
+    </form>
+  </div>
+
+  
+
+<router-outlet></router-outlet>
