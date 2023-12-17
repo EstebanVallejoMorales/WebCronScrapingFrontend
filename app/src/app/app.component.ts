@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { WebCronScrapingService } from './api/services';
 import { WebScrapingScheduleRequestDto } from './api/models';
 import { WebScrapingResultDto } from './api/models';
+import { WebScrapingJobResultDto } from './api/models';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 
@@ -24,19 +25,19 @@ export class AppComponent {
 
   public webScrapingResultDto1: WebScrapingResultDto;
   public webScrapingResultDto2: WebScrapingResultDto;
-  public webScrapingScheduleRequestDto: WebScrapingScheduleRequestDto
+  public webScrapingScheduleRequestDto: WebScrapingScheduleRequestDto;
+  public webScrapingJobResultDto: WebScrapingJobResultDto[];
 
   public constructor(private api:WebCronScrapingService){
     this.webScrapingResultDto1 = {};
     this.webScrapingResultDto2 = {};
-    this.webScrapingScheduleRequestDto = {};    
+    this.webScrapingScheduleRequestDto = {}; 
+    this.webScrapingJobResultDto = [];   
   }
 
   schedule() {
-    // Verifica que ambos campos no estén vacíos antes de hacer la llamada al servicio
     if (this.url1.trim() === '' || this.cron1.trim() === '') {
-      // Manejar el caso en el que los campos estén vacíos
-      console.error('URL y Cron son campos requeridos.');
+      alert('URL y Cron son campos requeridos.');
       return;
     }
     else{
@@ -59,8 +60,7 @@ export class AppComponent {
       alert('URL es un campo requerido.');
       return;
     }
-    else{
-      
+    else{      
       this.api.apiWebCronScrapingGetWebCronScrappingGet$Json({url: this.url2}).subscribe(
         response => {
           this.webScrapingResultDto2 = response;
@@ -69,4 +69,11 @@ export class AppComponent {
     }  
   }
 
+  getAll() {
+    this.api.apiWebCronScrapingGetAllWebScraingJobResultGet$Json().subscribe(
+      response => {
+        this.webScrapingJobResultDto = response;
+      }      
+    )          
+  }
 }

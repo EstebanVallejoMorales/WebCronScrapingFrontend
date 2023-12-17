@@ -18,13 +18,14 @@
     
     <div>
       <h2>Response:</h2>
+      <br>
       <div *ngIf="webScrapingResultDto1">
         {{webScrapingResultDto1.message}}
       </div> 
     </div>
   </div>
 
-  <div class="schedule-section">
+  <!-- <div class="schedule-section">
     <h2>Execute web scraper</h2>
     
     <form>
@@ -43,6 +44,33 @@
       <div *ngFor="let element of webScrapingResultDto2.headers">
         {{ element }}
         <br>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="schedule-section">
+    <h2>Get All Web Scraping web results</h2>
+    
+    <form>
+      <button type="button" (click)="getAll()">Execute</button>
+    </form>
+    
+    <div>
+      <h2>Response:</h2>
+      <br>
+      <div *ngIf="webScrapingJobResultDto">
+        No se han ejecutado jobs
+      </div>    
+      <div *ngFor="let element of webScrapingJobResultDto">
+        
+        <h3>JobId </h3> {{element.jobId}}
+        
+        <h3>Executed at: </h3> {{element.executionDateInfo}}
+        
+        <h3>Headers:</h3>
+        {{element.headers}}
+        <br>
+
       </div>
     </div>
   </div>
